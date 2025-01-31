@@ -1,0 +1,39 @@
+The issue can be resolved by restructuring the CSS to avoid reliance on the `!important` flag or by using a more specific selector. Here are two potential solutions:
+
+**Solution 1: Removing !important and using a more specific selector**
+
+```css
+.parent {
+  color: blue;
+}
+
+.child {
+  color: red;
+}
+
+.child:hover {
+  color: green;
+}
+```
+
+By removing `!important`, we rely on standard CSS specificity rules. The `:hover` selector will correctly override the `color` property for the `.child` element when hovering.  This is generally preferred over using `!important`.
+
+**Solution 2 (if !important is absolutely necessary): Improved Specificity**
+
+If, for some reason, you need to use `!important`, improve the specificity of the selector to ensure its precedence without interfering with the pseudo-class. This solution might not be preferred, it's only shown here for completeness.
+
+```css
+.parent {
+  color: blue;
+}
+
+.child {
+  color: red !important;
+}
+
+.child:hover {
+  color: green !important;
+}
+```
+
+This approach uses `!important` in both `child` and `child:hover` rules, ensuring consistent behavior. However, it is generally discouraged to use `!important` as it makes maintaining the stylesheet more difficult.
